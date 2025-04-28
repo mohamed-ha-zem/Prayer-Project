@@ -265,6 +265,11 @@ body {
     100% { transform: scale(1); }
 }
 
+@keyframes moveBackground {
+    from { background-position: 0 0; }
+    to { background-position: 50px 50px; }
+}
+
 @media (max-width: 768px) {
     .logo h1 { font-size: 2rem; }
     .child1 .place { font-size: 2rem; }

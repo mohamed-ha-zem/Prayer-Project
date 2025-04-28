@@ -1,90 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css2/prayer.css">
-    <link rel="stylesheet" href="css2/all.min.css" />
-    <title>Document</title>
-    <!-- <script src="node_modules/axios/dist/axios.min.js"></script> -->
+    <link rel="stylesheet" href="css2/all.min.css">
+    <title>مواقيت الصلاة</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+    </style>
 </head>
 <body>
-    <!-- انشاء الأب اللي هيحمل كل حاجه -->
+    <div class="background-animation"></div>
+    <div class="loader" id="loader"></div>
     <div class="parent">
-        <!-- انشاء اللوجو بتاع الموقع -->
         <div class="logo">
-            <h1>مواقيت الصلوات</h1>
-            <img src="https://img.freepik.com/free-vector/mosque-design-white-background_1344-67.jpg?semt=ais_hybrid">
+            <h1>مواقيت الصلاة</h1>
+            <img src="https://img.freepik.com/free-vector/mosque-design-white-background_1344-67.jpg?semt=ais_hybrid" alt="مسجد">
         </div>
-        <!-- // انشاء اللوجو بتاع الموقع //-->
-        <!-- انشاء الديف اللي شايل محتوي الموقع  -->
-        <div style="display: flex; flex-direction: column; align-items: center;">
-            <!-- انشاء الديف اللي شايل المكان والتاريخ -->
+        <div class="content">
             <div class="child1">
-                <h2 class="place" id="place">القاهره</h2>
+                <h2 class="place" id="place">القاهرة</h2>
                 <div class="date">
-                    <h2 id="day">الثلثاء</h2>
+                    <h2 id="day">الثلاثاء</h2>
                     <h2 id="year">Sep 10 2024</h2>
                 </div>
             </div>
-            <!-- // انشاء الديف اللي شايل المكان والتاريخ // -->
-            <!-- انشاء الديف اللي شايل مواقيت الصلاه  -->
             <div class="prayers">
-                <div class="box">
+                <div class="box" style="--i: 1;">
                     <p>الفجر</p>
-                    <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-                        </svg></p>
-                    <p id="Fajr">4:30 Pm</p>
+                    <p id="Fajr">4:30 AM</p>
                 </div>
-                <div class="box">
+                <div class="box" style="--i: 2;">
                     <p>الشروق</p>
-                    <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-                        </svg></p>
-                    <p id="Sunrise">4:30 PM</p>
+                    <p id="Sunrise">5:45 AM</p>
                 </div>
-                <div class="box">
+                <div class="box" style="--i: 3;">
                     <p>الظهر</p>
-                    <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-                        </svg></p>
-                    <p id="Dhuhr">4:30 PM</p>
+                    <p id="Dhuhr">12:00 PM</p>
                 </div>
-                <div class="box">
+                <div class="box" style="--i: 4;">
                     <p>العصر</p>
-                    <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-                        </svg></p>
-                    <p id="Asr">4:30 PM</p>
+                    <p id="Asr">3:30 PM</p>
                 </div>
-                <div class="box">
+                <div class="box" style="--i: 5;">
                     <p>المغرب</p>
-                    <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-                        </svg></p>
-                    <p id="Maghrib">4:30 PM</p>
+                    <p id="Maghrib">6:15 PM</p>
                 </div>
-                <div class="box">
+                <div class="box" style="--i: 6;">
                     <p>العشاء</p>
-                    <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-                        </svg></p>
-                    <p id="Isha">4:30 PM</p>
+                    <p id="Isha">7:30 PM</p>
                 </div>
             </div>
-            <!-- // انشاء الديف اللي شايل مواقيت الصلاه// -->
-            <!-- انشاء الديف اللي شايل اماكن المدن -->
             <div class="lists" id="lists">
-                <div class="list" id="list">اختار مدينتك<svg style="margin-right: 120px; width: 30px; height: 30px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
-                    <path d="M3.204 5h9.592L8 10.481zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659"/>
-                    </svg></div>
-                <div class="many" style="display: none;" id="many">
-                    <p class="p">القاهره</p>
-                    <p class="p">اسوان</p>
+                <div class="list" id="list">اختار مدينتك
+                    <svg style="margin-right: 10px; width: 30px; height: 30px;" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+                        <path d="M3.204 5h9.592L8 10.481zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659"/>
+                    </svg>
+                </div>
+                <div class="many" id="many">
+                    <p class="p">القاهرة</p>
+                    <p class="p">أسوان</p>
                     <p class="p">الإسكندرية</p>
-                    <p class="p">اسيوط</p>
+                    <p class="p">أسيوط</p>
                     <p class="p">بنها</p>
                     <p class="p">الدقهلية</p>
                     <p class="p">البحيرة</p>
@@ -96,8 +75,6 @@
                     <p class="p">القليوبية</p>
                     <p class="p">الوادي الجديد</p>
                     <p class="p">السويس</p>
-                    <p class="p">أسوان</p>
-                    <p class="p">أسيوط</p>
                     <p class="p">بني سويف</p>
                     <p class="p">بورسعيد</p>
                     <p class="p">دمياط</p>
@@ -109,12 +86,9 @@
                     <p class="p">سوهاج</p>
                 </div>
             </div>
-            <p style="color: white; background-color: #03A9F4; padding: 10px;">Made By => Mohamed Hazem</p>
-            <!-- // انشاء الديف اللي شايل اماكن المدن // -->
+            <p class="made">Made By => Mohamed Hazem</p>
         </div>
-        <!-- // انشاء الديف اللي شايل محتوي الموقع// -->
     </div>
-    <!--// انشاء الأب اللي هيحمل كل حاجه //-->
     <script src="prayer.js"></script>
 </body>
 </html>

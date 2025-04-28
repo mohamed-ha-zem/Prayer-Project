@@ -1,116 +1,274 @@
-h1 , h2 , h3 , h4 , h5 , h6 {
-    margin : 0
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
 }
-.parent{
-    background-image: url(https://img.freepik.com/premium-photo/mosque-with-moon-background-moon-sky_901383-157597.jpg?semt=ais_hybrid);
-    background-size: contain;
-    height: 230vh;
-    color: white;
+
+body {
+    background: linear-gradient(45deg, #1a3c34, #2a5c52);
+    min-height: 100vh;
+    overflow-x: hidden;
     direction: rtl;
 }
-.logo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 10%, transparent 10%);
+    background-size: 50px 50px;
+    animation: moveBackground 10s linear infinite;
+    z-index: -1;
 }
-.logo img{
-    height: 100px;
-    width: 100px;
+
+.loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border: 5px solid #d4a017;
+    border-top: 5px solid #1a3c34;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: none;
+    z-index: 1000;
 }
-.child1 .place{
-    font-size: 70px;
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
-.child1 .date{
-    display: flex;
-}
-.child1 .date h2{
-    padding: 5px;
-    font-size: 30px;
-}
-.prayers{
-    display: grid;
-    grid-template-columns: 350px 350px;
-    justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 30px;
-}
-@media (max-width: 768px){
-    .prayers{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-}
-.prayers .box{
-    display: flex;
-    background-color: white;
-    color: black;
-    font-size: 30px;
-    font-weight: 600;
-    margin: 0px 15px 15px 0px;
-    padding: 10px;
-    height: 35px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 40px;
-    cursor: pointer;
-    width: 300px;
-}
-.prayers .box p{
-    margin: 2px;
-}
-.lists {
-    font-size: 30px;
-    background-color: #777;
-    box-shadow: 2px 0px 10px 6px;
-    width: 300px;
-    padding: 5px 10px 5px 0px;
-    cursor: pointer;
-    margin: 30px 0px;
-}
-.made{
-    position: absolute;
-    bottom: 10px;
-    font-size: 30px;
-    font-weight: bold;
-    right: 400px;
-}
-.box svg{
-    margin: 5px 15px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-}
-.many{
-    padding-top: 15px;
+
+.parent {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: scroll;
-    height: 1000px;
+    padding: 20px;
+    min-height: 100vh;
+    animation: fadeIn 1s ease-in-out;
 }
-::-webkit-scrollbar {
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    animation: slideDown 0.8s ease-out;
+}
+
+.logo img {
+    height: 80px;
+    width: 80px;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: rotate(360deg);
+}
+
+.logo h1 {
+    color: #fff;
+    font-size: 2.5rem;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+}
+
+.child1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.child1 .place {
+    font-size: 3rem;
+    color: #d4a017;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s infinite;
+}
+
+.child1 .date {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.child1 .date h2 {
+    font-size: 1.5rem;
+    color: #fff;
+    padding: 5px 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.prayers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.prayers .box {
+    background: linear-gradient(135deg, #2a5c52, #3b7a70);
+    color: #fff;
+    padding: 15px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: popIn 0.5s ease forwards;
+    animation-delay: calc(0.1s * var(--i));
+    position: relative;
+    overflow: hidden;
+}
+
+.prayers .box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.prayers .box::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.prayers .box:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+.prayers .box p {
+    margin: 0 10px;
+}
+
+.prayers .box svg {
     display: none;
 }
-/* إزالة شريط التمرير في فايرفوكس */
-body {
-    scrollbar-width: none; /* يخفي الشريط في Firefox */
+
+.lists {
+    background: linear-gradient(135deg, #d4a017, #b8860b);
+    border-radius: 10px;
+    padding: 10px;
+    width: 300px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin: 20px 0;
+    transition: transform 0.3s ease;
 }
-/* إضافة overflow في الـ body عشان ما يقصش المحتوى */
-body {
-    overflow: auto;
+
+.lists:hover {
+    transform: scale(1.05);
 }
-.many p{
-    border: 1px solid;
+
+.list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.many {
+    max-height: 300px;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    margin-top: 10px;
+    display: none;
+    flex-direction: column;
+    animation: slideUp 0.5s ease-out;
+}
+
+.many p {
+    padding: 10px;
+    color: #1a3c34;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.many p:hover {
+    background: #d4a017;
+    color: #fff;
+}
+
+.made {
+    color: #fff;
+    background: linear-gradient(135deg, #03A9F4, #0288D1);
     padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    animation: fadeIn 1s ease-in-out;
 }
-/* hover */
-.box:hover{
-    background-color: #777;
-    color: white;
-    transition-duration: .2s;
-    box-shadow: 2px 0px 10px 6px;
+
+::-webkit-scrollbar {
+    width: 8px;
 }
-.many p:hover{
-    box-shadow: 2px 0px 10px 6px;
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d4a017;
+    border-radius: 10px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes popIn {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+    .logo h1 { font-size: 2rem; }
+    .child1 .place { font-size: 2rem; }
+    .child1 .date h2 { font-size: 1.2rem; }
+    .prayers .box { font-size: 1rem; }
+    .lists { width: 90%; }
 }
